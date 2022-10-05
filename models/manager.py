@@ -49,13 +49,13 @@ class DocumentManager(metaclass=Singleton):
         if not factory:
             raise ValueError('DocumentFactory must be a valid FileType')
 
-        file = factory.create(input.data)
+        doc = factory.create(input.data)
         new_file = File(
             id=self.length_files,
             path='./models/{}'.format(
                 input.file_name if input.file_name else
                 'new_document-{}'.format(self.length_files + 1)),
-            file=file
+            doc=doc
         )
 
         self._files.append(new_file)
@@ -68,9 +68,9 @@ class DocumentManager(metaclass=Singleton):
     def duplicate_file(self, idx: int):
         if idx > self.length_files:
             raise ValueError('Index out of range: %d' % idx)
-        id = self.length_files + 1
+        new_id = self.length_files + 1
         self._files.append(File(
-            id=id,
-            path='{}-{}'.format(self._files[idx].path, id),
-            file=self._files[idx].file.clone()
+            id=new_id,
+            path='{}-{}'.format(self._files[idx].path, new_id),
+            doc=self._files[idx].doc.clone()
         ))

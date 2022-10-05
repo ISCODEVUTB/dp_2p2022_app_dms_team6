@@ -1,6 +1,6 @@
 
 
-from package.manager import DocumentManager
+from models.manager import DocumentManager
 
 
 handler = DocumentManager()

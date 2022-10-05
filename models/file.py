@@ -6,4 +6,4 @@ from abstracts.document import Document
 class File:
     id: int
     path: str
-    file: Document
+    doc: Document

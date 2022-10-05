@@ -35,7 +35,7 @@ def test_should_add_and_remove_document():
     manager.create_document(fake_doc())
 
     assert manager.length_files == 1
-    assert isinstance(manager.files[0].file, Book)
+    assert isinstance(manager.files[0].doc, Book)
 
     manager.delete_file(0)
     assert manager.length_files == 0
