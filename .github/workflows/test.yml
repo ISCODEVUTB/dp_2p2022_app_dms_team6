@@ -1,0 +1,28 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install packages
+        run: pip install -r requirements.txt
+      - name: Run tox
+        run: tox -e py
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: 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  # Needed to get PR information, if any
+          SONAR_TOKEN: bf2632dec4eb390232b23973b333eed81e49015f
