@@ -9,26 +9,26 @@ class Document(ABC, IDocument):
 
     @abstractmethod
     def category(self) -> str:
-        pass
+        raise NotImplementedError("Implement this method")
 
     @abstractmethod
     def equals(self) -> bool:
-        pass
+        raise NotImplementedError("Implement this method")
 
     @abstractmethod
     def get_hash_code(self) -> int:
-        pass
+        raise NotImplementedError("Implement this method")
 
     @abstractmethod
     def to_string(self) -> str:
-        pass
+        raise NotImplementedError("Implement this method")
 
     @abstractmethod
     def clone(self) -> 'Document':
-        pass
+        raise NotImplementedError("Implement this method")
 
 
 class DocumentFactory:
     @abstractmethod
     def create(self):
-        pass
+        raise NotImplementedError("Implement this method")
