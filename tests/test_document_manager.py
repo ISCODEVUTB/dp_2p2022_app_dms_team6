@@ -6,23 +6,14 @@ from models.manager import DocumentManager, CreateDocumentInput, FileType
 from models.book import Book
 from models.scientific import Scientific
 from models.thesis import Thesis
+from tests.fake_data import fake_data
 
 
 def fake_doc(type_doc: FileType) -> CreateDocumentInput:
     return CreateDocumentInput(
         file_name='test',
         file_type=type_doc,
-        data={
-            'ISBN': '123',
-            'year': 2022,
-            'title': 'The Book',
-            'pages': 500,
-            'edition': 'The edition',
-            'formats': ['AUDIO', 'PRINTED'],
-            'authors': ['The Crhis'],
-            'editorial': 'The editorial',
-            'languages': ['es', 'en'],
-        }
+        data=fake_data()
     )
 
 

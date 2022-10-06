@@ -4,20 +4,7 @@ from models.book import Book
 from models.magazine import Magazine
 from models.scientific import Scientific
 from models.thesis import Thesis
-
-
-def fake_data():
-    return {
-        'ISBN': '32',
-        'year': 2021,
-        'title': 'The Fake Book 2',
-        'pages': 150,
-        'edition': 'The edition 2 ',
-        'formats': ['PRINTED'],
-        'authors': ['The Crhis'],
-        'editorial': 'The editorial',
-        'languages': ['es', 'en'],
-    }
+from tests.fake_data import fake_data
 
 
 def test_book_class():
