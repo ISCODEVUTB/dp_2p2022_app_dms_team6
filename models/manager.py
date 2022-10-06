@@ -46,9 +46,6 @@ class DocumentManager(metaclass=Singleton):
         elif FileType.THESIS == input.file_type:
             factory = ThesisFactory()
 
-        if not factory:
-            raise ValueError('DocumentFactory must be a valid FileType')
-
         doc = factory.create(input.data)
         new_file = File(
             id=self.length_files,

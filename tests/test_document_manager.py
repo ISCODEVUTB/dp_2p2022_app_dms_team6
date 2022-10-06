@@ -53,6 +53,16 @@ def test_should_add_and_remove_document():
     assert manager.length_files == 0
 
 
+def test_should_duplicate_a_document():
+    manager = DocumentManager()
+    manager.create_document(fake_doc(FileType.BOOK))
+    manager.duplicate_file(0)
+
+    assert manager.length_files == 2
+    manager.delete_file(0)
+    manager.delete_file(0)
+
+
 def test_should_raise_exception_on_remove_file():
     manager = DocumentManager()
 
