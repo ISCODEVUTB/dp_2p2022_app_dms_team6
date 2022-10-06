@@ -1,14 +1,17 @@
 
 
 import pytest
+from models.magazine import Magazine
 from models.manager import DocumentManager, CreateDocumentInput, FileType
 from models.book import Book
+from models.scientific import Scientific
+from models.thesis import Thesis
 
 
-def fake_doc() -> CreateDocumentInput:
+def fake_doc(type_doc: FileType) -> CreateDocumentInput:
     return CreateDocumentInput(
         file_name='test',
-        file_type=FileType.BOOK,
+        file_type=type_doc,
         data={
             'ISBN': '123',
             'year': 2022,
@@ -32,11 +35,20 @@ def test_document_manger_singleton():
 
 def test_should_add_and_remove_document():
     manager = DocumentManager()
-    manager.create_document(fake_doc())
+    manager.create_document(fake_doc(FileType.BOOK))
+    manager.create_document(fake_doc(FileType.MAGAZINE))
+    manager.create_document(fake_doc(FileType.SCIENTIFIC))
+    manager.create_document(fake_doc(FileType.THESIS))
 
-    assert manager.length_files == 1
+    assert manager.length_files == 4
     assert isinstance(manager.files[0].doc, Book)
+    assert isinstance(manager.files[1].doc, Magazine)
+    assert isinstance(manager.files[2].doc, Scientific)
+    assert isinstance(manager.files[3].doc, Thesis)
 
+    manager.delete_file(0)
+    manager.delete_file(0)
+    manager.delete_file(0)
     manager.delete_file(0)
     assert manager.length_files == 0
 
